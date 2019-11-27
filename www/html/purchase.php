@@ -1,10 +1,10 @@
 <?php
 
 // 設定ファイル読み込み
-require_once '../../include/Jyukusui/conf/const.php';
+require_once '../conf/const.php';
 // 関数ファイル読み込み
-require_once '../../include/Jyukusui/models/common.php';
-require_once '../../include/Jyukusui/models/purchase.php';
+require_once '../model/common.php';
+require_once '../model/purchase.php';
 
 $result_msg = '';
 $product_sum = '';
@@ -57,4 +57,4 @@ try {
 
 
 // テンプレートファイル読み込み
-include_once '../../include/Jyukusui/views/purchase.php';
+include_once '../view/purchase.php';

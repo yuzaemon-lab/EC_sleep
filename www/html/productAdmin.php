@@ -1,10 +1,10 @@
 <?php
 
 // 設定ファイル読み込み
-require_once '../../include/Jyukusui/conf/const.php';
+require_once '../conf/const.php';
 // 関数ファイル読み込み
-require_once '../../include/Jyukusui/models/common.php';
-require_once '../../include/Jyukusui/models/productAdmin.php';
+require_once '../model/common.php';
+require_once '../model/productAdmin.php';
 
 $sql_kind   = '';
 $result_msg = '';
@@ -177,4 +177,4 @@ try {
 }
 
 // テンプレートファイル読み込み
-include_once '../../include/Jyukusui/views/productAdmin.php';
+include_once '../view/productAdmin.php';

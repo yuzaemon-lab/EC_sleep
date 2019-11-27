@@ -1,13 +1,13 @@
 <?php
 
 // 設定ファイル読み込み
-require_once '../../include/Jyukusui/conf/const.php';
+require_once '../conf/const.php';
 // 関数ファイル読み込み
-require_once '../../include/Jyukusui/models/common.php';
-require_once '../../include/Jyukusui/models/register.php';
+require_once '../model/common.php';
+require_once '../model/register.php';
 
 // var_dump();
 
 
 // テンプレートファイル読み込み
-include_once '../../include/Jyukusui/views/register.php';
+include_once '../view/register.php';
