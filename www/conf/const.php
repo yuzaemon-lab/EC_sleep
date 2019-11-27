@@ -1,9 +1,9 @@
 <?php
 
 // データベースの接続情報
-define('DB_USER', 'codecamp29105');
-define('DB_PASSWD', 'PPLEPMZM');
-define('DB_NAME', 'codecamp29105');
+define('DB_USER', 'testuser');
+define('DB_PASSWD', 'password');
+define('DB_NAME', 'sample');
 define('DSN', 'mysql:dbname='.DB_NAME.';host=localhost;charset=utf8');
 
 // データベースのDNS情報

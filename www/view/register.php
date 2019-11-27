@@ -10,7 +10,7 @@
 
     <style>
         body {
-            background: url(../html/assets/img/view/full_screen.jpg);
+            background: url(./assets/img/view/full_screen.jpg);
             min-height: 800px;
             background-size: cover;
             background-position: center top;
@@ -44,7 +44,7 @@
       <hr>
       <p class="text-center">登録済みの場合は、以下リンクを参照ください。</p>
       <div class="text-center">
-        <a href="../html/login.php" class="my-auto mr-0 ml-3"><button type="button" class="btn btn-outline-dark">ログインページへ</button></a>
+        <a href="./login.php" class="my-auto mr-0 ml-3"><button type="button" class="btn btn-outline-dark">ログインページへ</button></a>
       </div>
     </main>
 
