@@ -1,159 +1,61 @@
-<?php 
-require_once 'functions.php';
-require_once 'db.php';
+<?php
 
-function get_user_carts($db, $user_id){
-  $sql = "
-    SELECT
-      items.item_id,
-      items.name,
-      items.price,
-      items.stock,
-      items.status,
-      items.image,
-      carts.cart_id,
-      carts.user_id,
-      carts.amount
-    FROM
-      carts
-    JOIN
-      items
-    ON
-      carts.item_id = items.item_id
-    WHERE
-      carts.user_id = {$user_id}
-  ";
-  return fetch_all_query($db, $sql);
+/*
+*  ログイン済みユーザのホームページ
+*/
+// セッション開始
+session_start();
+// セッション変数からuser_id取得
+if (isset($_SESSION['user_id'])) {
+  $user_id = $_SESSION['user_id'];
+} else {
+  // 非ログインの場合、ログインページへリダイレクト
+  header('Location: login.php');
+  exit;
 }
 
-function get_user_cart($db, $user_id, $item_id){
-  $sql = "
-    SELECT
-      items.item_id,
-      items.name,
-      items.price,
-      items.stock,
-      items.status,
-      items.image,
-      carts.cart_id,
-      carts.user_id,
-      carts.amount
-    FROM
-      carts
-    JOIN
-      items
-    ON
-      carts.item_id = items.item_id
-    WHERE
-      carts.user_id = {$user_id}
-    AND
-      items.item_id = {$item_id}
-  ";
-
-  return fetch_query($db, $sql);
-
+// セッション変数からuser_name取得
+if (isset($_SESSION['user_name'])) {
+  $user_name = $_SESSION['user_name'];
+} else {
+  // ユーザ名が取得できない場合、ログアウト処理へリダイレクト
+  header('Location: login.php');
+  exit;
 }
 
-function add_cart($db, $item_id, $user_id) {
-  $cart = get_user_cart($db, $item_id, $user_id);
-  if($cart === false){
-    return insert_cart($db, $user_id, $item_id);
-  }
-  return update_cart_amount($db, $cart['cart_id'], $cart['amount'] + 1);
+function update_cart_amount($dbh, $cart_id, $update_amount, $now_date) {
+    global $err_msg, $result_msg;
+    try {
+        $sql = 'UPDATE carts SET amount = ?, update_datetime = ?
+                WHERE cart_id = ?'; 
+        $stmt = $dbh->prepare($sql);
+
+        $stmt->bindValue(1, $update_amount, PDO::PARAM_INT);
+        $stmt->bindValue(2, $now_date,    PDO::PARAM_STR);
+        $stmt->bindValue(3, $cart_id, PDO::PARAM_INT);
+
+        $stmt->execute();
+        $result_msg = '購入数を変更しました。';
+    } catch(PDOException $e) {
+        $err_msg[] = '購入数を変更できませんでした。';
+        throw $e;
+    } 
 }
 
-function insert_cart($db, $item_id, $user_id, $amount = 1){
-  $sql = "
-    INSERT INTO
-      carts(
-        item_id,
-        user_id,
-        amount
-      )
-    VALUES({$item_id}, {$user_id}, {$amount})
-  ";
+function delete_cart_product($dbh, $cart_id) {
 
-  return execute_query($db, $sql);
-}
-
-function update_cart_amount($db, $cart_id, $amount){
-  $sql = "
-    UPDATE
-      carts
-    SET
-      amount = {$amount}
-    WHERE
-      cart_id = {$cart_id}
-    LIMIT 1
-  ";
-  return execute_query($db, $sql);
-}
-
-function delete_cart($db, $cart_id){
-  $sql = "
-    DELETE FROM
-      carts
-    WHERE
-      cart_id = {$cart_id}
-    LIMIT 1
-  ";
-
-  return execute_query($db, $sql);
-}
-
-function purchase_carts($db, $carts){
-  if(validate_cart_purchase($carts) === false){
-    return false;
-  }
-  foreach($carts as $cart){
-    if(update_item_stock(
-        $db, 
-        $cart['item_id'], 
-        $cart['stock'] - $cart['amount']
-      ) === false){
-      set_error($cart['name'] . 'の購入に失敗しました。');
+    try {
+        // SQL生成
+        $sql = 'DELETE
+                FROM carts
+                WHERE cart_id = ?';
+        // SQL文を実行する準備
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(1, $cart_id, PDO::PARAM_INT);
+        // SQLを実行
+        $stmt->execute();
+        
+    } catch (PDOException $e) {
+        throw $e;
     }
-  }
-  
-  delete_user_carts($db, $carts[0]['user_id']);
 }
-
-function delete_user_carts($db, $user_id){
-  $sql = "
-    DELETE FROM
-      carts
-    WHERE
-      user_id = {$user_id}
-  ";
-
-  execute_query($db, $sql);
-}
-
-
-function sum_carts($carts){
-  $total_price = 0;
-  foreach($carts as $cart){
-    $total_price += $cart['price'] * $cart['amount'];
-  }
-  return $total_price;
-}
-
-function validate_cart_purchase($carts){
-  if(count($carts) === 0){
-    set_error('カートに商品が入っていません。');
-    return false;
-  }
-  foreach($carts as $cart){
-    if(is_open($cart) === false){
-      set_error($cart['name'] . 'は現在購入できません。');
-    }
-    if($cart['stock'] - $cart['amount'] < 0){
-      set_error($cart['name'] . 'は在庫が足りません。購入可能数:' . $cart['stock']);
-    }
-  }
-  if(has_error() === true){
-    return false;
-  }
-  return true;
-}
-
