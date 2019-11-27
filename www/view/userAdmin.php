@@ -31,7 +31,7 @@
     <header>
       <div class="d-flex justify-content-between">
         <h1 class="p-2 col-5 mt-3 ml-3">熟睡.com</h1>
-        <a href="../../../Jyukusui/logout.php" class="p-2 my-auto mr-3 ml-auto"><button type="button" class="btn btn-outline-dark">ログアウト</button></a>
+        <a href="../html/logout.php" class="p-2 my-auto mr-3 ml-auto"><button type="button" class="btn btn-outline-dark">ログアウト</button></a>
       </div>
       <hr>
     </header>
@@ -56,7 +56,7 @@
     <footer class="text-center text-muted py-5">
         <hr>
         <div>
-        <a href="../../../Jyukusui/productAdmin.php">商品管理</a>
+        <a href="../html/productAdmin.php">商品管理</a>
         <p>©Jyukusui.com️</p>
         </div>
     </footer>

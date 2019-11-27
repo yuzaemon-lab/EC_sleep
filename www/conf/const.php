@@ -9,4 +9,4 @@ define('DSN', 'mysql:dbname='.DB_NAME.';host=localhost;charset=utf8');
 // データベースのDNS情報
 define('HTML_CHARACTER_SET', 'UTF-8');  // HTML文字エンコーディング
 define('DB_CHARACTER_SET',   'UTF8');   // DB文字エンコーディング
-define('IMG_DIR', './img/');   // 画像ファイル保存ディレクトリ
+define('IMG_DIR', './assets/img/');   // 画像ファイル保存ディレクトリ

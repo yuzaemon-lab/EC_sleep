@@ -118,7 +118,7 @@
     </section>
     <footer class="text-center text-muted py-5">
         <hr>
-        <a href="../../../Jyukusui/userAdmin.php">ユーザー管理</a>
+        <a href="../html/userAdmin.php">ユーザー管理</a>
         <div><p>©Jyukusui.com</p></div>
     </footer>
 

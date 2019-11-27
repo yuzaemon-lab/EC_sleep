@@ -9,7 +9,7 @@
 
     <style>
         body {
-            background: url(../../../Jyukusui/img/view/full_screen.jpg);
+            background: url(../html/assets/img/view/full_screen.jpg);
             min-height: 800px;
             background-size: cover;
             background-position: center top;
@@ -49,7 +49,7 @@
       </form>
       <hr>
       <p class="text-center">登録がお済みでない方は次のリンクを参照ください。</p>
-      <div class="text-center"><a href="./register.php" class="my-auto mr-0 ml-3"><button type="button" class="btn btn-outline-dark">新規登録</button></a></div>
+      <div class="text-center"><a href="../html/register.php" class="my-auto mr-0 ml-3"><button type="button" class="btn btn-outline-dark">新規登録</button></a></div>
     </main>
 
 

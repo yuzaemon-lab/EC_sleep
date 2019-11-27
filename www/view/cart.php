@@ -42,14 +42,14 @@
     <header>
         <div class="d-flex justify-content-between">
             <a href="index.php" class="p-2">
-                <img src="../../../Jyukusui/img/view/EC_logo.png" class="logo_img my-auto mx-2">
+                <img src="../html/assets/img/view/EC_logo.png" class="logo_img my-auto mx-2">
             </a>
             <div class="p-2 d-flex flex-row">
                 <p class="my-auto mx-2">こんにちわ、<a href=""><?php print $user_name ?></a>さん！</p>
-                <a href="../../../Jyukusui/cart.php" class="my-auto">
-                    <img src="../../../Jyukusui/img/view/cart.png" class="cart_img" alt="カート画像">
+                <a href="../html/cart.php" class="my-auto">
+                    <img src="../html/assets/img/view/cart.png" class="cart_img" alt="カート画像">
                 </a>
-                <a href="../../../Jyukusui/logout.php" class="my-auto mx-2">
+                <a href="../html/logout.php" class="my-auto mx-2">
                     <button type="button" class="btn btn-outline-dark">ログアウト</button>
                 </a>
             </div>
@@ -95,7 +95,7 @@
         <hr>
         <div class="text-center mb-3">合計：<?php print $sum; ?> 円</div>
         <div class="text-center">
-            <a href="../../../Jyukusui/purchase.php" class="my-auto mx-auto">
+            <a href="../html/purchase.php" class="my-auto mx-auto">
                 <button type="button" class="btn btn-outline-dark">購入する</button>
             </a>
         </div>
