@@ -43,18 +43,5 @@ try {
     $err_msg[] = 'DB error. Why?: '.$e->getMessage();
 }
 
-// 購入処理でやること
-// ・商品ステータスチェック if(isset())
-// ・商品の在庫がカートテーブルと比較して足りているかをチェック if(stock - amount => 0)
-
-
-// ・エラーがなければ if(count($err_msg) === 0)
-// another function
-// 　商品の数ぶん foreach()
-// 　・在庫数を減らす transaction_stock()
-// 　・カートから削除する cart_delete()
-// ・エラーが１つもなければコミットし、あればロールバックする
-
-
 // テンプレートファイル読み込み
 include_once '../view/purchase.php';

@@ -6,8 +6,5 @@ require_once '../conf/const.php';
 require_once '../model/common.php';
 require_once '../model/register.php';
 
-// var_dump();
-
-
 // テンプレートファイル読み込み
 include_once '../view/register.php';

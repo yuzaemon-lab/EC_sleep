@@ -4,7 +4,7 @@
 define('DB_USER', 'testuser');
 define('DB_PASSWD', 'password');
 define('DB_NAME', 'sample');
-define('DSN', 'mysql:dbname='.DB_NAME.';host=localhost;charset=utf8');
+define('DSN', 'mysql:dbname='.DB_NAME.';host=mysql;charset=utf8');
 
 // データベースのDNS情報
 define('HTML_CHARACTER_SET', 'UTF-8');  // HTML文字エンコーディング
